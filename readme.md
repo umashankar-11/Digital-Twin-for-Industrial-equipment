@@ -18,5 +18,5 @@ You can install the required dependencies using pip:
 ```bash
 pip install numpy
 
-
-![image](https://github.com/user-attachments/assets/a5047343-b219-42ee-91a3-efc1afb27e6d)
+## Output
+![Screenshot (1)](https://github.com/user-attachments/assets/59dbe1a8-6d11-4a8c-8c99-b4bb10ce6c03)
