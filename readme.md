@@ -19,4 +19,4 @@ You can install the required dependencies using pip:
 pip install numpy
 
 ## Output
-![Screenshot (1)](https://github.com/user-attachments/assets/59dbe1a8-6d11-4a8c-8c99-b4bb10ce6c03)
+![Screenshot (1)](https://github.com/user-attachments/assets/47c4652c-a975-4f82-9b24-112b3c7f03fc)
