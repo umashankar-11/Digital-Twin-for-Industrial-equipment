@@ -15,8 +15,10 @@ Ensure you have Python 3.x installed on your system, along with the following de
 
 You can install the required dependencies using pip:
 
+
 ```bash
 pip install numpy
 
 ## Output
-![Screenshot (1)](https://github.com/user-attachments/assets/47c4652c-a975-4f82-9b24-112b3c7f03fc)
+
+![Screenshot (1)](https://github.com/user-attachments/assets/27ee0044-5e07-493e-9888-faddbc430a55)
