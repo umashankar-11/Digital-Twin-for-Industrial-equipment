@@ -9,7 +9,7 @@ from sklearn.linear_model import LinearRegression
 import logging
 import threading
 
-# ===================== Advanced Equipment Simulation =====================
+
 
 class IndustrialEquipment:
     def __init__(self, id, name, max_capacity, efficiency, failure_rate, failure_types, location="Factory Floor", operating_temp_range=(0, 100)):
@@ -83,7 +83,7 @@ class IndustrialEquipment:
         }
 
 
-# ===================== Sensor Simulation with More Features =====================
+
 
 class Sensor:
     def __init__(self, sensor_id, equipment_id, sensor_type, unit, min_value, max_value, failure_type=None, drift_rate=0.01):
@@ -118,7 +118,6 @@ class Sensor:
     def __repr__(self):
         return f"Sensor {self.sensor_id}: {self.sensor_type} ({self.unit}), Reading: {self.value}"
 
-# ===================== Database Management with Advanced Features =====================
 
 class Database:
     def __init__(self, db_name="digital_twin.db"):
@@ -177,7 +176,7 @@ class Database:
         """Close database connection"""
         self.connection.close()
 
-# ===================== Predictive Maintenance with Time-Series Models =====================
+
 
 class PredictiveMaintenance:
     def __init__(self, historical_data):
@@ -203,7 +202,7 @@ class PredictiveMaintenance:
             return True
         return False
 
-# ===================== Advanced Reporting and Dashboard =====================
+
 
 class ReportGenerator:
     def __init__(self, equipment, db):
@@ -232,7 +231,7 @@ class ReportGenerator:
             print(sensor)
         print("--------------------------------------------------")
 
-# ===================== Digital Twin Control with Multi-Equipment Simulation =====================
+
 
 class DigitalTwinControl:
     def __init__(self, equipment_list, sensors, database, predictive_maintenance, report_generator):
