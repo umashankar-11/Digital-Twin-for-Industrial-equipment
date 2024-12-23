@@ -20,21 +20,20 @@ class IndustrialEquipment:
         self.location = location
         self.operating_temp_range = operating_temp_range
         self.current_capacity = 0
-        self.status = "operational"  # operational, maintenance, or failed
-        self.logs = []  # To track equipment status and maintenance events
-        self.operational_time = 0  # Track time spent in operational state
-        self.downtime = 0  # Track downtime due to failure
-        self.failure_count = 0  # Track number of failures
-        self.temperature = 20  # Default temperature in °C
+        self.status = "operational" 
+        self.logs = []  
+        self.operational_time = 0  
+        self.downtime = 0  
+        self.failure_count = 0  
+        self.temperature = 20 
 
     def simulate_operation(self):
-        """Simulate the operation of the equipment by updating capacity and checking failure"""
+        
         if self.status == "operational":
             self.efficiency -= random.uniform(0, 0.05)
             self.efficiency = max(0, self.efficiency)
             self.current_capacity = self.max_capacity * self.efficiency
-
-            # Simulate temperature change
+      
             self.temperature += random.uniform(-2, 2)  # Simulate fluctuation
             if self.temperature < self.operating_temp_range[0] or self.temperature > self.operating_temp_range[1]:
                 self.status = "failed"
@@ -42,7 +41,6 @@ class IndustrialEquipment:
                 self.failure_count += 1
                 print(f"Equipment {self.name} has failed due to temperature out of range!")
             
-            # Simulate random failure based on the failure rate
             failure_type = random.choice(self.failure_types)
             if random.random() < self.failure_rate:
                 self.status = "failed"
@@ -51,20 +49,20 @@ class IndustrialEquipment:
                 print(f"Equipment {self.name} has failed due to {failure_type}!")
             else:
                 print(f"Equipment {self.name} is operating at {self.efficiency * 100:.2f}% efficiency.")
-                self.operational_time += 1  # Track time equipment is operational
+                self.operational_time += 1 
                 
         return self.status, self.current_capacity, self.temperature
 
     def perform_maintenance(self):
-        """Perform maintenance to restore the equipment"""
+        
         self.status = "operational"
         self.efficiency = 1.0  # restore full efficiency
         self.logs.append(f"{datetime.now()}: Equipment {self.name} has been restored to operational state.")
         print(f"Equipment {self.name} is now operational after maintenance.")
 
     def get_efficiency(self):
-        """Get current efficiency of the equipment"""
-        return self.efficiency * 100  # Return efficiency as a percentage
+        
+        return self.efficiency * 100  
 
     def get_performance_parameters(self):
     
@@ -89,22 +87,22 @@ class Sensor:
         self.min_value = min_value
         self.max_value = max_value
         self.value = self.generate_random_value()
-        self.failure_type = failure_type  # Optional failure type
-        self.drift_rate = drift_rate  # For sensor drift
+        self.failure_type = failure_type  
+        self.drift_rate = drift_rate  
 
     def generate_random_value(self):
-        """Simulate sensor reading by generating a random value within a range"""
+        
         return random.uniform(self.min_value, self.max_value)
 
     def read_sensor(self):
-        """Simulate reading the sensor"""
+       
         if self.failure_type == "stuck":
-            return self.value  # Simulate stuck sensor (value does not change)
+            return self.value  
         elif self.failure_type == "overload":
-            return random.uniform(self.max_value - 10, self.max_value)  # Overload failure
+            return random.uniform(self.max_value - 10, self.max_value)  
         elif self.failure_type == "drift":
-            self.value += random.uniform(-self.drift_rate, self.drift_rate)  # Simulate sensor drift
-            self.value = max(self.min_value, min(self.max_value, self.value))  # Ensure value is within range
+            self.value += random.uniform(-self.drift_rate, self.drift_rate) 
+            self.value = max(self.min_value, min(self.max_value, self.value))  
             return self.value
         else:
             self.value = self.generate_random_value()
@@ -121,7 +119,7 @@ class Database:
         self.create_tables()
 
     def create_tables(self):
-        """Create tables to store sensor data"""
+        
         self.cursor.execute('''
         CREATE TABLE IF NOT EXISTS sensor_data (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -142,33 +140,33 @@ class Database:
         self.connection.commit()
 
     def store_data(self, sensor_id, equipment_id, value):
-        """Store sensor data in the database"""
+       
         self.cursor.execute('''
         INSERT INTO sensor_data (sensor_id, equipment_id, value) 
         VALUES (?, ?, ?)''', (sensor_id, equipment_id, value))
         self.connection.commit()
 
     def store_equipment_data(self, equipment_id, status, efficiency, temperature):
-        """Store equipment data in the database"""
+        
         self.cursor.execute('''
         INSERT INTO equipment_data (equipment_id, status, efficiency, temperature)
         VALUES (?, ?, ?, ?)''', (equipment_id, status, efficiency, temperature))
         self.connection.commit()
 
     def retrieve_data(self, sensor_id, limit=10):
-        """Retrieve historical data for a specific sensor"""
+        
         self.cursor.execute('''
         SELECT * FROM sensor_data WHERE sensor_id = ? ORDER BY timestamp DESC LIMIT ?''', (sensor_id, limit))
         return self.cursor.fetchall()
 
     def retrieve_equipment_data(self, equipment_id, limit=10):
-        """Retrieve historical equipment data"""
+        
         self.cursor.execute('''
         SELECT * FROM equipment_data WHERE equipment_id = ? ORDER BY timestamp DESC LIMIT ?''', (equipment_id, limit))
         return self.cursor.fetchall()
 
     def close(self):
-        """Close database connection"""
+       
         self.connection.close()
 
 class PredictiveMaintenance:
@@ -177,18 +175,18 @@ class PredictiveMaintenance:
         self.train_model(historical_data)
 
     def train_model(self, data):
-        """Train a simple regression model on historical data"""
+        
         X = np.array([d[0] for d in data]).reshape(-1, 1)  # Assume 1 feature (e.g., time)
         y = np.array([d[1] for d in data])  # Sensor readings as the target
         self.model.fit(X, y)
 
     def predict_failure(self, current_time):
-        """Predict equipment failure based on historical data"""
+        
         prediction = self.model.predict([[current_time]])
         return prediction[0]
 
     def check_for_failure(self, current_time, threshold=0.1):
-        """Check if the model predicts a failure"""
+       
         prediction = self.predict_failure(current_time)
         if prediction < threshold:
             print(f"Prediction indicates failure risk at time {current_time}")
@@ -203,7 +201,7 @@ class ReportGenerator:
         logging.basicConfig(filename="equipment_report.log", level=logging.INFO)
 
     def log_equipment_status(self):
-        """Log equipment status to a file"""
+       
         performance = self.equipment.get_performance_parameters()
         self.logger.info(f"Equipment {self.equipment.id} Status Report")
         self.logger.info(f"Status: {self.equipment.status}")
@@ -214,7 +212,7 @@ class ReportGenerator:
         self.logger.info(f"Downtime: {performance['Downtime (hrs)']} hours")
 
     def generate_report(self):
-        """Generate and print a detailed report"""
+        
         self.log_equipment_status()
         print(f"\n--- Report for Equipment {self.equipment.id} ---")
         print(f"Status: {self.equipment.status}")
@@ -230,7 +228,7 @@ class DigitalTwinControl:
         self.report_generator = report_generator
 
     def start_simulation(self):
-        """Start the simulation of the digital twin"""
+        
         while True:
             for equipment in self.equipment_list:
                 status, capacity, temperature = equipment.simulate_operation()
