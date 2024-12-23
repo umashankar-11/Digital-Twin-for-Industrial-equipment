@@ -9,8 +9,6 @@ from sklearn.linear_model import LinearRegression
 import logging
 import threading
 
-
-
 class IndustrialEquipment:
     def __init__(self, id, name, max_capacity, efficiency, failure_rate, failure_types, location="Factory Floor", operating_temp_range=(0, 100)):
         self.id = id
@@ -81,9 +79,6 @@ class IndustrialEquipment:
             "Current Efficiency (%)": self.get_efficiency(),
             "Temperature (°C)": self.temperature
         }
-
-
-
 
 class Sensor:
     def __init__(self, sensor_id, equipment_id, sensor_type, unit, min_value, max_value, failure_type=None, drift_rate=0.01):
@@ -176,8 +171,6 @@ class Database:
         """Close database connection"""
         self.connection.close()
 
-
-
 class PredictiveMaintenance:
     def __init__(self, historical_data):
         self.model = LinearRegression()
@@ -201,8 +194,6 @@ class PredictiveMaintenance:
             print(f"Prediction indicates failure risk at time {current_time}")
             return True
         return False
-
-
 
 class ReportGenerator:
     def __init__(self, equipment, db):
@@ -229,10 +220,7 @@ class ReportGenerator:
         print(f"Status: {self.equipment.status}")
         for sensor in self.equipment.logs:
             print(sensor)
-        print("--------------------------------------------------")
-
-
-
+            
 class DigitalTwinControl:
     def __init__(self, equipment_list, sensors, database, predictive_maintenance, report_generator):
         self.equipment_list = equipment_list
@@ -247,30 +235,23 @@ class DigitalTwinControl:
             for equipment in self.equipment_list:
                 status, capacity, temperature = equipment.simulate_operation()
 
-                # Simulate sensor readings and store data
                 for sensor in self.sensors:
                     if sensor.equipment_id == equipment.id:
                         value = sensor.read_sensor()
                         self.db.store_data(sensor.sensor_id, equipment.id, value)
 
-                # Store equipment data
                 self.db.store_equipment_data(equipment.id, equipment.status, equipment.get_efficiency(), equipment.temperature)
 
-                # Predictive maintenance check
                 current_time = time.time()
                 if self.predictive_maintenance.check_for_failure(current_time):
                     print("Initiating maintenance process...")
                     equipment.perform_maintenance()
 
-                # Generate and log reports
                 self.report_generator.generate_report()
 
-            # Wait for 5 seconds before the next iteration
             time.sleep(5)
 
-# ===================== Example Usage =====================
 
-# Initialize equipment, sensors, database, and components
 equipment_1 = IndustrialEquipment("001", "Pump A", max_capacity=1000, efficiency=0.9, failure_rate=0.1, failure_types=["overload", "temperature"], location="Factory Floor")
 equipment_2 = IndustrialEquipment("002", "Fan B", max_capacity=800, efficiency=0.85, failure_rate=0.08, failure_types=["bearing failure", "temperature"], location="Assembly Line")
 sensor_1 = Sensor("S1", "001", "Temperature", "°C", 10, 100, failure_type="drift")
@@ -281,6 +262,5 @@ db = Database()
 predictive_maintenance = PredictiveMaintenance(historical_data=[(1, 95), (2, 92), (3, 90)])
 report_generator = ReportGenerator(equipment_1, db)
 
-# Start the simulation
 digital_twin_control = DigitalTwinControl([equipment_1, equipment_2], [sensor_1, sensor_2, sensor_3, sensor_4], db, predictive_maintenance, report_generator)
 digital_twin_control.start_simulation()
