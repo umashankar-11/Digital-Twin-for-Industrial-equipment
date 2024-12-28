@@ -21,4 +21,4 @@ pip install numpy
 
 ## Output
 
-![ScreenShot](output.png)
+![ScreenShot](output.PNG)
