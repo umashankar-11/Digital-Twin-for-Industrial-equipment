@@ -6,7 +6,9 @@ This project simulates a motor's operation using a **Digital Twin** model. The s
 ## Overview
 
 The program simulates the operation of a motor and its digital twin. The motor has properties such as its `max_speed`, `efficiency`, and `temperature`. The digital twin mirrors the motor's behavior and records its status over time. If the motor's temperature exceeds a certain threshold, the digital twin will output a warning message.
+### Output
 
+![ScreenShot of output of code](Screenshot-py-new.png)
 ## Installation
 
   Python 3.x installed on your system, along with the following dependencies:
@@ -25,6 +27,4 @@ pip install numpy
    ```bash
    git clone https://github.com?umashankar-11/Digital-Twin-for-Industrial-equipment-
    cd Digital-Twin-for-Industrial-equipment-
-## Output
 
-![ScreenShot of output of code](Screenshot-py-new.png)
