@@ -21,4 +21,4 @@ pip install numpy
 
 ## Output
 
-![Screenshot (1)](https://github.com/user-attachments/assets/27ee0044-5e07-493e-9888-faddbc430a55)
+![Screenshot (1)](output.PNG)
