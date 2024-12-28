@@ -21,4 +21,4 @@ pip install numpy
 
 ## Output
 
-![ScreenShot of output of code](Screenshot-py-new.png)
+![ScreenShot of output of code]Screenshot-py-new.png)
