@@ -19,6 +19,12 @@ we can also install the required dependencies using pip:
 ```bash
 pip install numpy
 
+### Steps
+
+1. **Clone the Repository** (or download the project files):
+   ```bash
+   git clone https://github.com?umashankar-11/Digital-Twin-for-Industrial-equipment-
+   cd Digital-Twin-for-Industrial-equipment-
 ## Output
 
 ![ScreenShot of output of code](Screenshot-py-new.png)
