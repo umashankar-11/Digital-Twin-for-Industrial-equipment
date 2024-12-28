@@ -9,11 +9,11 @@ The program simulates the operation of a motor and its digital twin. The motor h
 
 ## Installation
 
-Ensure you have Python 3.x installed on your system, along with the following dependencies:
+  Python 3.x installed on your system, along with the following dependencies:
 
 - `numpy` (for numerical operations)
 
-You can install the required dependencies using pip:
+we can also install the required dependencies using pip:
 
 
 ```bash
@@ -21,4 +21,4 @@ pip install numpy
 
 ## Output
 
-![Screenshot (1)](output.PNG)
+![ScreenShot](output.png)
