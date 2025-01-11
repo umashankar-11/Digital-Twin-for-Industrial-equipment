@@ -1,4 +1,4 @@
-# Digital Twin Motor Simulation
+# Digital Twin for industrial equipment
 
 This project simulates a motor's operation using a **Digital Twin** model. The system models a motor's speed, efficiency, and temperature, and tracks the motor's health in real-time. A digital twin is created for the motor to monitor and record its behavior during operation.
 
