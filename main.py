@@ -34,7 +34,7 @@ class IndustrialEquipment:
             self.efficiency = max(0, self.efficiency)
             self.current_capacity = self.max_capacity * self.efficiency
       
-            self.temperature += random.uniform(-2, 2)  # Simulate fluctuation
+            self.temperature += random.uniform(-2, 2)  
             if self.temperature < self.operating_temp_range[0] or self.temperature > self.operating_temp_range[1]:
                 self.status = "failed"
                 self.logs.append(f"{datetime.now()}: Equipment {self.name} failed due to temperature out of range!")
@@ -56,7 +56,7 @@ class IndustrialEquipment:
     def perform_maintenance(self):
         
         self.status = "operational"
-        self.efficiency = 1.0  # restore full efficiency
+        self.efficiency = 1.0  
         self.logs.append(f"{datetime.now()}: Equipment {self.name} has been restored to operational state.")
         print(f"Equipment {self.name} is now operational after maintenance.")
 
@@ -67,7 +67,7 @@ class IndustrialEquipment:
     def get_performance_parameters(self):
     
         if self.operational_time + self.downtime == 0:
-            uptime_percentage = 0  # Default to 0% if no operation or downtime
+            uptime_percentage = 0  
         else:
             uptime_percentage = (self.operational_time / (self.operational_time + self.downtime)) * 100
         return {
@@ -177,7 +177,7 @@ class PredictiveMaintenance:
     def train_model(self, data):
         
         X = np.array([d[0] for d in data]).reshape(-1, 1)  # Assume 1 feature (e.g., time)
-        y = np.array([d[1] for d in data])  # Sensor readings as the target
+        y = np.array([d[1] for d in data])  
         self.model.fit(X, y)
 
     def predict_failure(self, current_time):
@@ -248,7 +248,6 @@ class DigitalTwinControl:
                 self.report_generator.generate_report()
 
             time.sleep(5)
-
 
 equipment_1 = IndustrialEquipment("001", "Pump A", max_capacity=1000, efficiency=0.9, failure_rate=0.1, failure_types=["overload", "temperature"], location="Factory Floor")
 equipment_2 = IndustrialEquipment("002", "Fan B", max_capacity=800, efficiency=0.85, failure_rate=0.08, failure_types=["bearing failure", "temperature"], location="Assembly Line")
