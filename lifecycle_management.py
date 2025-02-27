@@ -45,3 +45,4 @@ equipment.decommission(datetime.date(2025, 1, 15))
 
 lifecycle_summary = equipment.get_lifecycle_summary()
 print(pd.DataFrame(lifecycle_summary))
+
