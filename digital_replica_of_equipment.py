@@ -8,7 +8,7 @@ p.setGravity(0, 0, -9.8)
 
 p.setAdditionalSearchPath(pybullet_data.getDataPath())  
 
-planeId = p.loadURDF("plane.urdf") 
+planeId = p.loadURDF("plane.urdf")  
 robotId = p.loadURDF("kuka_iiwa/model.urdf", basePosition=[0, 0, 0.5])  
 boxId = p.loadURDF("r2d2.urdf", basePosition=[1, 0, 0.5])  
 
@@ -18,9 +18,9 @@ time_step = 0.01
 p.setTimeStep(time_step)
 p.setRealTimeSimulation(1)  
 
+
 joint_positions_log = []
 target_positions_log = []
-
 
 def control_robot_arm(target_joint_positions):
     for i in range(p.getNumJoints(robotId)):
@@ -43,12 +43,11 @@ def log_joint_positions():
         joint_positions.append(joint_state[0])
     joint_positions_log.append(joint_positions)
 
-
 def pick_up_box():
-   
+    
     approach_position = [0.7, 0, 0.5]
     target_joint_positions = [0.5 * np.sin(time.time() * 0.1),  
-                              -1.0 * np.cos(time.time() * 0.2),  
+                              -1.0 * np.cos(time.time() * 0.2), 
                               1.0 * np.sin(time.time() * 0.3),  
                               -1.5 * np.cos(time.time() * 0.4),  
                               1.0 * np.sin(time.time() * 0.5),  
@@ -58,7 +57,7 @@ def pick_up_box():
     control_robot_arm(target_joint_positions)
 
 for step in range(5000):  
-
+ 
     pick_up_box()
 
     control_conveyor()
